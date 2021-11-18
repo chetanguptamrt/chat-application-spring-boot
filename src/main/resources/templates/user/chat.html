@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base :: layout(~{::section})}">
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+	<section>
+	<input style="display: none;" th:value="${profileUser.userName}" id="username">
+	<input style="display: none;" th:value="${profileUser.id}" id="profileid">
+	<input th:if="${firstChat}" style="display: none;" th:value="${firstChat}" id="first-chat">
+	    <div class="chat">
+	        <div class="chat-up bg-white">
+	        	<div class="ml-3 mr-2 mt-2 pt-1">
+	        		<a class="chat-back-link" th:href="@{/}"><i class="fa fa-reply" aria-hidden="true"></i></a>
+	        	</div>
+	        	<div class="chat-divider"></div>
+		    	<div class="ml-2 mt-1 mb-1">
+			    	<a class="chat-profile" th:href="@{|/profile/${profileUser.userName}}">
+			    		<img class="img-fluid chat-image" alt="profile pic" th:src="@{|/img/profile/${profileUser.profile}}"/>
+			    		<label th:text="${profileUser.firstName+' '+profileUser.lastName}"></label>
+			    	</a>
+		    	</div>
+		    </div>
+		    
+		    <script type="text/javascript">var checkSeen = false;</script>
+	    	<div id="chat-area" class="chat-area">
+	    		<div th:styleappend="${firstChat}?'display:none'" id="chat-profile" class="text-center">
+    				<img class="img-fluid chats-image mt-2 mb-2" alt="profile pic" th:src="@{|/img/profile/${profileUser.profile}}"/><br/>
+    				<a class="btn btn-sm btn-primary" th:href="@{|/profile/${profileUser.userName}}">View Profile</a>
+    			</div>
+    			<div th:if="${firstChat}" class="text-center mt-2 mb-2" id="load-more">
+    				<button onclick="loadMoreChat()" class="btn btn-light border">Load more</button>
+    			</div>
+	    		<div id="chat-upper-area">
+	    		</div>
+		    	<th:block th:each="chat : ${chats}">
+		    		<div th:if="${chat.userSend.id==profileUser.id}" class="chat-area-s">
+		    			<div class="chat-sender">
+			    			<label th:text="${chat.text}"></label><br/>
+			    			<small th:text="${#dates.format(chat.date,'dd/MMM/YYYY hh:mm a')}"></small>
+			    		</div>
+			    		<script type="text/javascript">checkSeen = false;</script>
+			    	</div>
+			    	<div th:if="${chat.userSend.id==user.id}" class="chat-area-r">
+			    		<div class="chat-receiver">
+			    			<label th:text="${chat.text}"></label><br/>
+			    			<small th:text="${#dates.format(chat.date,'dd/MMM/YYYY hh:mm a')}"></small>
+			    		</div>
+			    		<script type="text/javascript">checkSeen = true;</script>
+			    	</div>
+		    	</th:block>
+	    	</div>
+	    	
+	    	<div class="chat-text pl-2 pr-2 bg-white">
+	    		<textarea placeholder="Say Hi..." id="text" rows="1" class="chat-textarea"></textarea>
+	    		<label id="send-text" class="chat-send text-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i></label>
+	    	</div>
+	    </div>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.8.16/dayjs.min.js" crossorigin="anonymous"></script>
+	    <script type="text/javascript" th:src="@{/js/chatScript.js}"></script>
+	</section>
+</body>
+</html>

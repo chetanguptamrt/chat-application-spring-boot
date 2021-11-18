@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base :: layout(~{::section})}">
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+	<section>
+	    
+	    <div class="pt-2 pb-2">
+	    	<h3 class="text-center">Edit Profile Info</h3>
+	    	<div class="text-center">
+	    		<img class="img-fluid profile-image" alt="profile pic" th:src="@{|/img/profile/${user.profile}}"/>
+	    	</div>
+	    	
+	    	<form>
+	    		<div class="row mt-2">
+                    <div class="col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-12">
+		               	<label for="photo">Update Profile - </label> <br>
+						<input type="file" id="photo" name="photo" required="required" />
+	               	</div>
+               	</div><div class="row mb-3 mt-2">
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary" >Update Photo</button>
+                    </div>
+                </div>	
+	    	</form>
+	    	<form> 
+	    		<div class="row">
+                    <div class="col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-12">
+               			<label>Name - </label>
+			    		<input class="form-control" required="required" name="firstName" placeholder="Enter your first name" />
+			    		<input class="form-control mt-1" required="required" name="lastName" placeholder="Enter your last name" />
+			    		<label class="mt-2" for="username">Username - </label>
+			    		<input class="form-control" required="required" id="username" name="username" placeholder="Enter unique username" />
+			    	</div>
+			    </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary" >Update</button>
+                    </div>
+                </div>	
+	    	</form>
+
+	    	<div class="row mt-3">
+                <div class="col-12 text-center">
+                    <h3>Change Password</h3>
+                    <small style="display: none;" id="status"></small>
+                </div>
+            </div>
+            <form id="changePassword">
+                <div class="row">
+                    <div class="col-xl-6 offset-xl-3 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-8 offset-sm-2 col-12">
+                        <input class="mt-2 form-control" type="password" minlength="6" placeholder="Old Password" id="oPassword" name="oPassword" required="required"/>
+                        <input class="mt-2 form-control" type="password" minlength="6" placeholder="New Password" id="nPassword" name="nPassword" required="required" />
+                        <input class="mt-2 form-control" type="password" minlength="6" placeholder="Confirm Password" id="cPassword" name="cPassword" required="required" />
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <button type="submit" class="btn btn-primary" >Update Password</button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="row mt-4">
+                <div class="col-12 text-center">
+                    <h4 class="text-danger">Danger Zone</h4>
+                    <button id="deleteButton" class="btn btn-outline-danger mt-2">
+                        Delete Account
+                    </button>
+                </div>
+            </div>
+	    </div>
+	</section>
+</body>
+</html>

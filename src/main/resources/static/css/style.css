@@ -1,0 +1,176 @@
+body{
+	background-color: rgb(245,245,245);
+}
+.profile-image{
+	border-radius: 50%;
+	margin-top: 20px;
+	width: 180px;
+}
+.chat{
+	position: relative;
+	height: calc(100vh - 70px);
+	padding: 0px;
+	background-color: rgb(250,250,250);
+}
+.chat-up{
+	border-bottom: 1px solid rgb(225,225,225);
+	display: flex;
+}
+.chat-image{
+	border-radius: 50%;
+	width: 38px;
+}
+.chats-image{
+	border-radius: 50%;
+	width: 100px;
+}
+.chat-back-link{
+	text-decoration: none !important;
+	color: black;
+	padding-right: 10px;
+}
+.chat-back-link:hover{
+	color: black;
+}
+.chat-divider{
+	border-left: 1px solid rgb(225,225,225);
+}
+.chat-profile{
+	text-decoration: none !important;
+	color: black;
+	font-weight: 500;
+	font-size-adjust: none;
+	font-size: 21px;
+	cursor: pointer;
+}
+.chat-profile:hover{
+	color: black;
+}
+.chat-profile label:hover{
+	cursor: pointer;
+}
+.chat-text{
+	position: absolute;
+	bottom: 0px;
+	left: 10px;
+	right: 10px;
+	width: inherit;	
+	border: 1px solid rgb(50,50,50);
+	border-radius: 25px;
+	padding-top: 3px;
+}
+.chat-textarea{
+	margin-left: 10px;
+	resize: none;
+	border: 0px;
+	width: calc(100% - 50px);
+	outline: none;;
+}
+.chat-send{
+	position: absolute;
+	right: 25px;
+	top: 5px;
+	color: aqua;
+	margin-bottom: 2px;
+	cursor: pointer;
+}
+.chat-area{
+	padding: 2px 12px;
+	overflow-y: auto; 
+	height: calc(100% - 90px);
+	overflow: auto;
+}
+.chat-area-r{
+	margin-left: 20%;
+	margin-top: 7px;
+	display: flex;
+}
+.chat-area-s{
+	margin-right: 20%;
+	margin-top: 7px;
+}
+.chat-sender{
+	border: 1px solid gray;
+	border-radius: 15px 15px 15px 0px;
+	padding: 3px 15px;
+	background: white;
+}
+.chat-sender label{
+  word-break: break-all;
+  margin: 0px;
+}
+.chat-receiver label{
+  word-break: break-all;
+  margin: 0px;
+}
+.chat-receiver{
+	border: 1px solid #92cbd6;
+	border-radius: 15px 15px 0px 15px;
+	width: 100%;
+	padding: 3px 15px;
+	background: #aaedfa;
+}
+.chat-label{
+	padding: 0px 10px;
+	margin-top: 5px; 
+}
+.inbox-user{
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+	color: black;
+	border-bottom: 1px solid rgb(240,240,240);
+	position: relative;
+}
+.inbox-user:hover{
+	text-decoration: none;
+	color: black;
+	background-color: rgb(245,245,245);
+}
+.inbox-user-label{
+	position: absolute;
+	top:6px;
+	left: 55px;
+	font-weight: 600;		
+}
+.inbox-user-small{
+	position: absolute;
+	top:25px;
+	color: rgb(50,50,50);
+	left: 55px;
+	width: 600px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.inbox-user-date {
+	position: absolute;
+	top:2px;
+	color: rgb(50,50,50);
+	right: 10px;		
+}
+@media screen and (max-width: 650px) {
+	.inbox-user-small{
+		width: 400px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 450px) {
+	.inbox-user-small{
+		width: 300px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 350px) {
+	.inbox-user-small{
+		width: 150px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}
+

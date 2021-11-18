@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base :: layout(~{::section})}">
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+	<section>
+	    <div class="p-2">
+	    	<div class="mb-2">
+	    		<input class="form-control" placeholder="Search your friends" id="search" onkeyup="searchUser()"/>
+	    		<div id="display-search"></div>
+	    	</div>
+	    	<th:block th:each="chat : ${chats}">
+		    	<a class="inbox-user" th:href="@{|/chat/${chat.userReceived.userName}}" th:if="${chat.userSend.id==user.id}">
+		    		<img style="width: 40px;" th:src="@{|/img/profile/${chat.userReceived.profile}}" />
+    				<label class="inbox-user-label" th:text="${chat.userReceived.firstName+' '+chat.userReceived.lastName}"></label>
+    				<small class="inbox-user-small"><span th:classappend="${chat.seen}?'text-primary'"><i class="fa fa-check" aria-hidden="true"></i></span> <span th:text="${chat.text}"></span></small>
+		    		<small th:if="${#dates.format(today,'dd/MM/YYYY')==#dates.format(chat.date,'dd/MM/YYYY')}" class="inbox-user-date"><span style="padding-right: 5px" th:text="${#dates.format(chat.date,'hh:mm a')}"></span></small>
+		    		<small th:unless="${#dates.format(today,'dd/MM/YYYY')==#dates.format(chat.date,'dd/MM/YYYY')}" class="inbox-user-date"><span th:text="${#dates.format(chat.date,'dd/MMM/YYYY')}"></span></small>
+		    	</a>
+		    	<a class="inbox-user mt-2" th:href="@{|/chat/${chat.userSend.userName}}" th:unless="${chat.userSend.id==user.id}">
+		    		<img style="width: 40px;" th:src="@{|/img/profile/${chat.userSend.profile}}" />
+		    		<label class="inbox-user-label" th:text="${chat.userSend.firstName+' '+chat.userSend.lastName}"></label>
+		    		<small class="inbox-user-small"><span th:classappend="${chat.seen}?'':'font-weight-bold'" th:text="${chat.text}"></span></small>
+		    		<small th:if="${#dates.format(today,'dd/MM/YYYY')==#dates.format(chat.date,'dd/MM/YYYY')}" class="inbox-user-date"><span style="padding-right: 5px" th:text="${#dates.format(chat.date,'hh:mm a')}"></span></small>
+		    		<small th:unless="${#dates.format(today,'dd/MM/YYYY')==#dates.format(chat.date,'dd/MM/YYYY')}" class="inbox-user-date"><span th:text="${#dates.format(chat.date,'dd/MMM/YYYY')}"></span></small>
+		    	</a>
+		    </th:block>
+		    <div class="text-center mt-2">
+		    	<label>End of Inbox</label>
+		    </div>
+	    </div>
+	    <script type="text/javascript">
+		    function searchUser() {
+		    	if($("#search").val()!=''){
+		    		console.log($("#search").val())
+		    		$.ajax({
+		    			url: "/u/search-user?s="+$("#search").val(),
+		    			method: "get",
+		    			success: function(data){
+		    				var htmlData = "";
+		    				for(var d = 0; d<data.length; d++){
+		    					htmlData+="<a class='text-dark border pl-2 pr-2' style='text-decoration:none; display: block;' href='/chat/"+data[0].userName+"' >"+data[d].firstName+"</a>";
+		    				}
+		    				if(data.length==0){
+		    					$("#display-search").html("Not found");
+		    				} else {
+		    					$("#display-search").html(htmlData);	
+		    				}
+		    			}, 
+		    			error: function(){
+		    				alert("Something went wrong!");
+		    				location.reload();
+		    			}
+		    		});
+		    		$("#display-search").show();
+		    	} else {
+		    		$("#display-search").hide();
+		    	}
+		    }
+	    </script>
+	    
+	</section>
+</body>
+</html>

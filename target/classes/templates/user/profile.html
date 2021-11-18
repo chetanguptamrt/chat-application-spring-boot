@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/base :: layout(~{::section})}">
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+	<section>
+	    
+	    <div class="text-center">
+	    	<img class="img-fluid profile-image" alt="profile pic" th:src="@{|/img/profile/${profileUser.profile}}"/>
+	    	<h3 th:text="${profileUser.firstName+' '+profileUser.lastName}"></h3>
+	    	<label th:text="${'username - '+profileUser.userName}"></label><br/>
+	    	<a th:if="${user.id==profileUser.id}" class="btn btn-primary border border-dark mb-3 btn-sm pl-4 pr-4" th:href="@{/u/settings}">Settings</a>
+	    	<a th:unless="${user.id==profileUser.id}" class="btn border border-dark mb-3 btn-sm pl-4 pr-4" th:href="@{|/chat/${profileUser.userName}}">Message</a>
+	    </div>
+	</section>
+</body>
+</html>
